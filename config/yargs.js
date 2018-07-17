@@ -15,6 +15,13 @@ const argv = require('yargs')
             default: true
         }
     })
+    .command('borrar', 'Elimina un elemento de la lista de actividades', {
+        descripcion: {
+            demand: true,
+            alias: 'd'
+        }
+    })
+    .command('listar', 'Lista todas las actividades de la lista de tareas')
     .help().argv;
 
 module.exports = {

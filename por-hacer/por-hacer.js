@@ -29,8 +29,31 @@ const crearNuevaTarea = (descripcion) => {
     guardarDB();
     return nuevaTarea;
 }
+const actualizarTarea = (descripcion, completado) => {
+    cargarDB();
+    let index = listadoPorHacer.findIndex((tarea) => tarea.descripcion === descripcion);
+    if (index >= 0) {
+        listadoPorHacer[index].completado = completado;
+        guardarDB();
+        return true;
+    } else
+        return false;
+}
+const borrarTarea = (descripcion) => {
+    cargarDB();
+    let index = listadoPorHacer.findIndex((tarea) => tarea.descripcion === descripcion);
+    if (index >= 0) {
+        listadoPorHacer.splice(index, 1);
+        guardarDB();
+        return true;
+    } else
+        return false;
+}
+
 
 module.exports = {
     crearNuevaTarea,
-    obtenerDB
+    obtenerDB,
+    actualizarTarea,
+    borrarTarea
 };

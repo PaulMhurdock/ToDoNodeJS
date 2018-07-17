@@ -1,5 +1,5 @@
 const argv = require('./config/yargs').argv;
-const { crearNuevaTarea, obtenerDB } = require('./por-hacer/por-hacer');
+const { crearNuevaTarea, obtenerDB, actualizarTarea, borrarTarea } = require('./por-hacer/por-hacer');
 const colors = require('colors');
 let comando = argv._[0];
 switch (comando) {
@@ -20,6 +20,13 @@ switch (comando) {
         break;
     case 'actualizar':
         console.log('Actualizar tarea');
+        let actualizado = actualizarTarea(argv.descripcion, argv.completado)
+        console.log(`Resultado de actualizacion: ${actualizado}`);
+        break;
+    case 'borrar':
+        console.log('Borrar tarea');
+        let borrado = borrarTarea(argv.descripcion);
+        console.log(`Elemento borrado ${borrado}`);
         break;
     default:
         console.log('Comando no reconocido');
